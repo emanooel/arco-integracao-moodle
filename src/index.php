@@ -8,4 +8,4 @@ use Arcoinformatica\IntegracaoMoodle\model\Usuario;
 
 require "./vendor/autoload.php";
     
-echo InscricaoController::inscreverUsuarioEmCurso(24, 12);
+echo CursosController::getCursos();

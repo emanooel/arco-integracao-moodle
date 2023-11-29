@@ -1,10 +1,26 @@
 Acesse: https://testead.femar.com.br/ este é o ambiente de teste
 usuário: vitor.arco
 Senha: 3jI{3gs4
+# Links uteis
+https://testead.femar.com.br/admin/webservice/documentation.php - Lista das funções da API para usar com a lib moodle no método request.
+
+https://testead.femar.com.br/admin/roles/manage.php - Gerênciar papéis, no ambiente de teste, estamos usando o papel Arco REST Web Service. aparentemente aqui na edição de um papel, tem se **acesso a todas funções** nas quais em cada uma é possivel conceder permissão ou não para o papel. 
+
+https://testead.femar.com.br/admin/roles/allow.php?mode=assign - Para atribuir permissão a um papel, para que este papel possa atribuir papeis a outros usuários. De uso útil quando se deparar com um erro semelhante a este.
+
+ `[exception] => moodle_exception
+    [errorcode] => wsusercannotassign
+    [message] => Você não tem permissão para atribuir esse papel (5) para esse usuário  (24) nesse curso (12).`
+
+https://testead.femar.com.br/admin/webservice/service_functions.php?id=3 - Funções que estão ativas para o papel Arco REST Web Service, aqui é possivel desativar funções que não serão usadas, para que o papel não tenha acesso a elas. E também é possível ver a descrição que cada função faz.
 
 # Progresso
 Já é possível gerênciar usuário.
 Colocar um usuário como participante de um curso. 
+
+# Funcionamento com o site cursos-femar
+- Colocar na tabela de usuarios/clientes uma coluna chamada id_user_moodle, pois a funcao de criar um usuário no moodle, retorna o ID do usuário criado, então é interessante salvar este ID para utilidades futuras.  
+- Ficar verificando a tabela de retorno de pagamento, 
 
 documentação da API: https://testead.femar.com.br/admin/webservice/documentation.php
 # CURSOS
