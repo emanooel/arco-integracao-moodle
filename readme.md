@@ -61,3 +61,8 @@ exemplo de uso:
     '',
     'Brasil1612');
 UsuarioController::updateUser(24,$usuario);`
+### Inscrever usuário em um curso
+#### Descrição dos parametros
+1. int $idUsuario - id do usuário no moodle, pode usar a função listar usuários para saber o id do usuário que deseja inscrever no curso.
+2. int $idCurso - id do curso no moodle, pode usar a função listar cursos para saber o id do curso que deseja inscrever o usuário.
+`echo InscricaoController::inscreverUsuarioEmCurso(24, 12);`
