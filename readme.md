@@ -17,6 +17,8 @@ https://testead.femar.com.br/admin/webservice/service_functions.php?id=3 - Funç
 # Progresso
 Já é possível gerênciar usuário.
 Colocar um usuário como participante de um curso. 
+## Pontos criticos de desenvolvimento
+- Senha do usuario no banco de dados e no moodle, no banco de dados vai ser salvo a senha criptografada, no moodle não, então é necessário criptografar a senha antes de enviar para o moodle.
 
 # Funcionamento com o site cursos-femar
 - Colocar na tabela de usuarios/clientes uma coluna chamada id_user_moodle, pois a funcao de criar um usuário no moodle, retorna o ID do usuário criado, então é interessante salvar este ID para utilidades futuras.  
