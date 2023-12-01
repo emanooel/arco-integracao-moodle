@@ -31,4 +31,18 @@ class Utils{
         $string = preg_replace("/[\s_]/", "-", $string);
         return $string;
     }
+
+    /**
+     * Função que pode ser usada para gerar um retorno json após uma requisição
+     * retorno de sucesso ou erro, com mensagem e dados
+     * @return string
+     */
+    public static function feedback(string $type, string $message): string{
+        return json_encode(
+            [
+                "type" => $type,
+                "message" => $message
+            ]
+        );
+    }
 }

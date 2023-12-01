@@ -9,6 +9,9 @@ use Arcoinformatica\IntegracaoMoodle\utils\Utils;
 use Exception;
 use PDO;
 
+/**
+ * Classe responsável por sincronizar os cursos do moodle com o banco de dados.
+ */
 class CursoSync
 {
     private $conn;

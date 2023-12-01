@@ -26,7 +26,7 @@ class UsuarioController
             ]
         ));
 
-        print_r($userCreate);
+        return $userCreate;
     }
 
     public static function listUsers(){

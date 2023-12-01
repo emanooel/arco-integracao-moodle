@@ -17,6 +17,7 @@ https://testead.femar.com.br/admin/webservice/service_functions.php?id=3 - Funç
 # Progresso
 Já é possível gerênciar usuário.
 Colocar um usuário como participante de um curso. 
+Cursos do moodle podem ser sincronizados com uma base de dados.
 ## Pontos criticos de desenvolvimento
 - Senha do usuario no banco de dados e no moodle, no banco de dados vai ser salvo a senha criptografada, no moodle não, então é necessário criptografar a senha antes de enviar para o moodle.
 
@@ -84,3 +85,18 @@ UsuarioController::updateUser(24,$usuario);`
 1. int $idUsuario - id do usuário no moodle, pode usar a função listar usuários para saber o id do usuário que deseja inscrever no curso.
 2. int $idCurso - id do curso no moodle, pode usar a função listar cursos para saber o id do curso que deseja inscrever o usuário.
 `echo InscricaoController::inscreverUsuarioEmCurso(24, 12);`
+
+## CRIACAO E RETORNO DE USUARIO CRIADO
+`$usuario = new Usuario("Joana Rozaes", "28999112855", "desenvolvimento2@arcoinformatica.com.br","","","","Cachoeiro de Itapemirim","ES","","BR","1T@81r@1612");
+$created = UsuarioController::createUser($usuario);
+echo $created;
+//PEGA O ID DO USUARIO RECEM CRIADO
+echo $created[0]['id'];`
+## COMO É O RETORNO SE DER UM PRINT_R
+`Array(
+    [0] => Array
+        (
+            [id] => 25
+            [username] => joana.rozaes
+        )
+)`

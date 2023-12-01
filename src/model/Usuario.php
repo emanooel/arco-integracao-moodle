@@ -17,8 +17,9 @@ class Usuario
     private string $cep;
     private string $pais;
     private string $senha;
+    private string $id_user_moodle;
 
-    public function __construct(string $nome, string $telefone = '', string $email, string $rua = '', string $numero = '', string $bairro = '', string $cidade = '', string $estado = '', string $cep = '', string $pais = 'BR', string $senha)
+    public function __construct(string $nome, string $telefone = '', string $email, string $rua = '', string $numero = '', string $bairro = '', string $cidade = '', string $estado = '', string $cep = '', string $pais = 'BR', string $senha, string $id_user_moodle = '')
     {
         $this->nome = $nome;
         $this->telefone = $telefone;
@@ -31,6 +32,7 @@ class Usuario
         $this->cep = $cep;
         $this->pais = $pais;
         $this->senha = $senha;
+        $this->id_user_moodle = $id_user_moodle;
     }
 
     public function getUsername(): string{
@@ -62,6 +64,8 @@ class Usuario
 
         if(in_array(explode(" ", $this->nome)[1], $preposicao)) {
             return explode(" ", $this->nome)[2] ?? "";
+        }else{
+            return explode(" ", $this->nome)[1] ?? "";
         }
     }
 
@@ -84,20 +88,11 @@ class Usuario
 
     public function toArray()
     {
-        $preposicao = ['da', 'de', 'do', 'das', 'dos'];
-
-        $primeiroNome = explode(" ", $this->nome)[0];
-        $ultimoNome = explode(" ", $this->nome)[1] ?? "";
-
-        if (in_array($ultimoNome, $preposicao)) {
-            $ultimoNome = explode(" ", $this->nome)[2] ?? "";
-        }
-
         return [
             'username' => $this->nome,
             'password' => $this->senha,
-            'firstname' => $primeiroNome,
-            'lastname' => $ultimoNome,
+            'firstname' => $this->getFirstName(),
+            'lastname' => $this->getLastName(),
             'email' => $this->email
         ];
     }
