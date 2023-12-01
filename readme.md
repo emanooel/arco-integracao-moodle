@@ -1,6 +1,3 @@
-Acesse: https://testead.femar.com.br/ este é o ambiente de teste
-usuário: vitor.arco
-Senha: 3jI{3gs4
 # Instalação
 `composer require dev11_arcoinformatica/integracao_moodle`
 Tem que ter uma pasta config com um arquivo .env com as seguintes variáveis de ambiente:
