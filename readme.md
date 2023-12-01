@@ -1,6 +1,3 @@
-Acesse: https://testead.femar.com.br/ este é o ambiente de teste
-usuário: vitor.arco
-Senha: 3jI{3gs4
 # Instalação
 Tem que ter uma pasta config com um arquivo .env com as seguintes variáveis de ambiente:
 ### CREDENCIAIS PARA ACESSO AO WEBSERVICE DO MOODLE DA FEMAR
