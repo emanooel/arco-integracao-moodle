@@ -1,6 +1,20 @@
 Acesse: https://testead.femar.com.br/ este é o ambiente de teste
 usuário: vitor.arco
 Senha: 3jI{3gs4
+# Instalação
+Tem que ter uma pasta config com um arquivo .env com as seguintes variáveis de ambiente:
+### CREDENCIAIS PARA ACESSO AO WEBSERVICE DO MOODLE DA FEMAR
+PASSWORD=
+_USERNAME=
+SERVICE=
+URL=<url_do_site_moodle>
+URL_WEBSERVICE=
+### CREDENCIAIS PARA ACESSO A BASE DE DADOS PARA SINCRONIZAÇÃO
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=
+DB_NAME=femar_base_teste
+
 # Links uteis
 https://testead.femar.com.br/admin/webservice/documentation.php - Lista das funções da API para usar com a lib moodle no método request.
 
@@ -29,6 +43,8 @@ documentação da API: https://testead.femar.com.br/admin/webservice/documentati
 # CURSOS
 ### Listar cursos
 `echo CursoController::getCursos();`
+### Listar curso por id
+`echo CursoController::getCursoById(12);`
 # USUARIO
 usuario para contexto de moodle, no banco de dados é cliente
 ### Usar a integração para gerênciar usuários no moodle.
@@ -88,10 +104,13 @@ UsuarioController::updateUser(24,$usuario);`
 
 ## CRIACAO E RETORNO DE USUARIO CRIADO
 `$usuario = new Usuario("Joana Rozaes", "28999112855", "desenvolvimento2@arcoinformatica.com.br","","","","Cachoeiro de Itapemirim","ES","","BR","1T@81r@1612");
-$created = UsuarioController::createUser($usuario);
-echo $created;
-//PEGA O ID DO USUARIO RECEM CRIADO
-echo $created[0]['id'];`
+$created = UsuarioController::createUser($usuario)`;
+
+`echo $created;`
+
+`//PEGA O ID DO USUARIO RECEM CRIADO`
+
+`echo $created[0]['id'];`
 ## COMO É O RETORNO SE DER UM PRINT_R
 `Array(
     [0] => Array
@@ -100,3 +119,31 @@ echo $created[0]['id'];`
             [username] => joana.rozaes
         )
 )`
+## CONFIGURAR UMA CRON PARA OBSERVAR PEDIDOS PAGOS E INSCREVER USUARIO NO CURSO NO MOODLE
+`use Arcoinformatica\IntegracaoMoodle\databaseSync\MatriculaSync;`
+
+`$matricula = new MatriculaSync();`
+
+`$matricula->watchPedidos();`
+## CONFIGURAR UMA CRON PARA OBSERVAR OS CURSOS DO MOODLE E ATUALIZAR NA BASE DE DADOS
+`use Arcoinformatica\IntegracaoMoodle\databaseSync\CursoSync;`
+
+`$curso = new CursoSync();`
+
+`$curso->sync();`
+## FAZER O CADASTRO DE UM USUARIO NO MOODLE NO MOMENTO QUE O MESMO SE CADASTRAR NO SITE
+As variaveis POSTs são apenas exemplos, devem ser substituidas pelos valores reais do name dos inputs do form real. Os parametros obrigatórios são: nome, email, e senha.
+
+`$usuario = new Usuario($_POST['nome'], $_POST["telefone"], $_POST["email"],$_POST["rua"],$_POST["numero"],$_POST["bairro"],$_POST["cidade"],$_POST["estado"],$_POST["cep"],$_POST["pais"],$_POST["senha"])`;
+
+`$created = UsuarioController::createUser($usuario)`;
+
+Depois de cadastrar o usuario no moodle basta seguir normalmente com o cadastro no site.
+Para garantir que só cadastre no site se o cadastro no moodle for bem sucedido, basta fazer.
+
+`if($created){`
+
+`//cadastrar no site`
+
+`}`
+

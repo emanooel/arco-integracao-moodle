@@ -19,7 +19,7 @@ class Usuario
     private string $senha;
     private string $id_user_moodle;
 
-    public function __construct(string $nome, string $telefone = '', string $email, string $rua = '', string $numero = '', string $bairro = '', string $cidade = '', string $estado = '', string $cep = '', string $pais = 'BR', string $senha, string $id_user_moodle = '')
+    public function __construct(string $nome, string $telefone = '', string $email, string $rua = '', string $numero = '', string $bairro = '', string $cidade = '', string $estado = '', string $cep = '', string $pais = 'BR', string $senha = '', string $id_user_moodle = '')
     {
         $this->nome = $nome;
         $this->telefone = $telefone;
@@ -86,9 +86,16 @@ class Usuario
         ]);
     }
 
-    public function toArray()
-    {
+    public function toArray(){
+
+        $createpassword = false;
+       
+        if($this->senha == ''){
+            $createpassword = true;
+        }
+        
         return [
+            'createpassword' => $createpassword,
             'username' => $this->nome,
             'password' => $this->senha,
             'firstname' => $this->getFirstName(),
