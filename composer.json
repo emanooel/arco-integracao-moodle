@@ -1,5 +1,5 @@
 {
-    "name": "arcoinformatica/integracao_moodle",
+    "name": "dev11_arcoinformatica/integracao_moodle",
     "autoload": {
         "psr-4": {
             "Arcoinformatica\\IntegracaoMoodle\\": "src/"
