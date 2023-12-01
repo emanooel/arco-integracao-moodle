@@ -53,7 +53,7 @@ class InscricaoController
     public static function verificaUsuarioMatriculado(int $idUsuario, int $idCurso){
         $db = Connection::conectar();
 
-        $sql = "SELECT * FROM usuario_matriculado WHERE id_user_moodle = {$idUsuario} AND id_curso_moodle = {$idCurso}";
+        $sql = "SELECT * FROM cliente_matriculado WHERE id_user_moodle = {$idUsuario} AND id_curso_moodle = {$idCurso}";
 
         $matricula = $db->execute($sql)->fetch();
 
@@ -65,12 +65,12 @@ class InscricaoController
     }
 
     /**
-     * Faz a inserção de um usuario e um curso na tabela usuario_matriculado
+     * Faz a inserção de um cliente e um curso na tabela cliente_matriculado
      */
     public static function inserirUsuarioMatriculado(int $idUsuario, int $idCurso){
         $db = Connection::conectar();
 
-        $insert = $db->insertQuery("usuario_matriculado", [
+        $insert = $db->insertQuery("cliente_matriculado", [
             "id_user_moodle" => $idUsuario,
             "id_curso_moodle" => $idCurso
         ]);
